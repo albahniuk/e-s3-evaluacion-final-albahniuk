@@ -12,11 +12,11 @@ class App extends Component {
     super(props);
     this.state = {
       characters: [],
-      characterFilter: ''
+      filteredCharacter: ''
     }
 
     this.getCharacters = this.getCharacters.bind(this);
-    this.characterInput = this.characterInput.bind(this);
+    this.getInput = this.getInput.bind(this);
     this.filterCharacter = this.filterCharacter.bind(this);
   }
 
@@ -36,31 +36,31 @@ class App extends Component {
       });
   }
 
-  characterInput(e){
+  getInput(e){
     const query = e.currentTarget.value;
     this.setState({
-      characterFilter: query
+      filteredCharacter: query
     })
   }
 
   filterCharacter() {
-    const {characters, characterFilter} = this.state;
+    const {characters, filteredCharacter} = this.state;
 
-    return characters.filter(item => item.name.toLowerCase().includes(characterFilter.toLowerCase()));
+    return characters.filter(item => item.name.toLowerCase().includes(filteredCharacter.toLowerCase()));
   }
 
   render() {
     return (
       <Fragment>
-        <h1 className='app-title'>Harry Potter characters</h1>
+        <h1 className='app-title'>Personajes de Harry Potter</h1>
         <Switch>
           <Route exact path="/" render={()=>(
             <Fragment>
-              <Filter characterInput={this.characterInput}/>
+              <Filter getInput={this.getInput}/>
               <CharacterList filterCharacter={this.filterCharacter()}/>
             </Fragment>
           )} />
-          <Route path="/character/:id" render={props => <CharacterDetail match={props.match} character={this.state.characters}/>} />
+          <Route path="/character/:id" render={props => <CharacterDetail match={props.match} characters={this.state.characters}/>} />
         </Switch>
       </Fragment>
     );

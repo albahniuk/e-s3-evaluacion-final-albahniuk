@@ -18,6 +18,6 @@ CharacterCard.propTypes = {
     name: PropTypes.string.isRequired,
     house: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired
-}
+};
 
 export default CharacterCard;

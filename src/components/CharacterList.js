@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 
 class CharacterList extends Component {
   render() {
+    const {filterCharacter} = this.props;
     return (
       <ul className='characters__list'>
-        {this.props.filterCharacter.map(item => {
+        {filterCharacter.map(item => {
           return (
             <li className='characters__list-item' key={item.id}>
               <Link to={`/character/${item.id}`} className='characters__list-item-link'>
@@ -23,6 +24,6 @@ class CharacterList extends Component {
 
 CharacterList.propTypes = {
   filterCharacter: PropTypes.arrayOf(PropTypes.object).isRequired
-}
+};
 
 export default CharacterList;

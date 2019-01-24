@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 
 class CharacterDetail extends Component {
   render() {
-      const {character} = this.props;
+      const {characters} = this.props;
 
       const characterId = this.props.match.params.id;
 
-      if (character.length > 0 && characterId < character.length) {
-          const mycharacter = character[characterId];
+      if (characters.length > 0 && characterId < characters.length) {
+          const mycharacter = characters[characterId];
 
           const {name, house, yearOfBirth, patronus, image, alive} = mycharacter;
 
@@ -40,7 +40,7 @@ class CharacterDetail extends Component {
 }
 
 CharacterDetail.propTypes = {
-    character: PropTypes.arrayOf(PropTypes.object).isRequired,
-}
+    characters: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default CharacterDetail;
