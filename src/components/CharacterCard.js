@@ -1,23 +1,23 @@
 import React, {Component} from "react";
+import PropTypes from 'prop-types';
 
 class CharacterCard extends Component {
   render() {
+    const {name, house, image} = this.props;
     return (
-        <ul className='characters__list'>
-          {this.props.character.map((item,index) => {
-            return (
-              <li className='characters__list-item' key={index}>
-                <div>
-                  <h2 className='character-name'>{item.name}</h2>
-                  <p className='character-house'>{item.house}</p>
-                  <img src={item.image} alt={item.name}></img>
-                </div>
-              </li>
-            )
-          })}
-        </ul>
-    );
+        <div className='character'>
+            <img src={image} alt={name} className='character-image'></img>
+            <h2 className='character-name'>{name}</h2>
+            <p className='character-house'>{house}</p>
+        </div>
+    )
   }
+}
+
+CharacterCard.PropTypes = {
+    name: PropTypes.string.isRequired,
+    house: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired
 }
 
 export default CharacterCard;

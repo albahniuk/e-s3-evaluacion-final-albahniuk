@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import './App.scss';
 import CharacterList from './components/CharacterList';
-import CharacterCard from './components/CharacterCard';
+import CharacterDetail from './components/CharacterDetail';
 import {fetchCharacters} from './services/CharactersService';
 import Filter from './components/Filter';
+import {Switch, Route} from 'react-router-dom';
+
 
 class App extends Component {
   constructor(props) {
@@ -24,15 +26,14 @@ class App extends Component {
 
   getCharacters() {
     fetchCharacters()
-    .then(response => response.json())
-    .then(data => {
-      const cleanCharacters = data.map((item,index) => {
-        return {...item, id: index};
+      .then(data => {
+        const cleanCharacters = data.map((item,index) => {
+          return {...item, id: index};
+        });
+        this.setState({
+          characters: cleanCharacters
+        });
       });
-      this.setState({
-        characters: cleanCharacters
-      })
-    })
   }
 
   characterInput(e){
@@ -51,14 +52,16 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-      <header>
-      <h1 className='title'>Harry Potter characters</h1>
-        <Filter characterInput={this.characterInput}/>
-      </header>
-      <main>
-        <CharacterList filterCharacter={this.filterCharacter()}/>
-        <CharacterCard character={this.state.characters}/>
-      </main>
+        <h1 className='title'>Harry Potter characters</h1>
+        <Switch>
+          <Route exact path="/" render={()=>(
+            <Fragment>
+              <Filter characterInput={this.characterInput}/>
+              <CharacterList filterCharacter={this.filterCharacter()}/>
+            </Fragment>
+          )} />
+          <Route path="/character/:id" render={props => <CharacterDetail match={props.match} character={this.state.characters}/>} />
+        </Switch>
       </Fragment>
     );
   }

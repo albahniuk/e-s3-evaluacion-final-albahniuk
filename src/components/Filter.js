@@ -4,7 +4,7 @@ class Filter extends Component {
   render() {
     return (
       <div className='filter'>
-        <input type='text' onKeyUp={this.props.characterInput}></input>
+        <input type='text' onKeyUp={this.props.characterInput}/>
       </div>
     );
   }
