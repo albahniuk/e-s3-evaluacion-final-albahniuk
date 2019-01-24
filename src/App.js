@@ -21,7 +21,8 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.getCharacters()
+    // this.getCharacters();
+    this.getSavedCharacters();
   }
 
   getCharacters() {
@@ -30,11 +31,27 @@ class App extends Component {
         const cleanCharacters = data.map((item,index) => {
           return {...item, id: index};
         });
+        this.saveCharacters(cleanCharacters);
         this.setState({
           characters: cleanCharacters
         });
       });
   }
+
+  saveCharacters(data){
+    localStorage.setItem('savedCharacters', JSON.stringify(data));
+  }
+  
+  getSavedCharacters(){
+    if(localStorage.getItem('savedCharacters') !== null) {
+      const savedCharacters = JSON.parse(localStorage.getItem('savedCharacters'));
+      this.setState({
+        characters: savedCharacters
+      })
+    } else {
+      this.getCharacters();
+    }
+  } 
 
   getInput(e){
     const query = e.currentTarget.value;
