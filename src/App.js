@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import './App.scss';
 import CharacterList from './components/CharacterList';
-
-const ENDPOINT = "http://hp-api.herokuapp.com/api/characters";
+import CharacterCard from './components/CharacterCard';
+import {fetchCharacters} from './services/CharactersService';
+import Filter from './components/Filter';
 
 class App extends Component {
   constructor(props) {
@@ -22,13 +23,12 @@ class App extends Component {
   }
 
   getCharacters() {
-    fetch(ENDPOINT)
+    fetchCharacters()
     .then(response => response.json())
     .then(data => {
       const cleanCharacters = data.map((item,index) => {
         return {...item, id: index};
       });
-      console.log(cleanCharacters);
       this.setState({
         characters: cleanCharacters
       })
@@ -52,28 +52,12 @@ class App extends Component {
     return (
       <Fragment>
       <header>
-        <h1 className='title'>Harry Potter characters</h1>
-        <div className='filter'>
-          <input type='text' onKeyUp={this.characterInput}></input>
-        </div>
+      <h1 className='title'>Harry Potter characters</h1>
+        <Filter characterInput={this.characterInput}/>
       </header>
       <main>
         <CharacterList filterCharacter={this.filterCharacter()}/>
-      <div className="app">
-        <ul className='characters__list'>
-          {this.state.characters.map((item,index) => {
-            return (
-              <li className='characters__list-item' key={index}>
-                <div>
-                  <h2 className='character-name'>{item.name}</h2>
-                  <p className='character-house'>{item.house}</p>
-                  <img src={item.image} alt={item.name}></img>
-                </div>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
+        <CharacterCard character={this.state.characters}/>
       </main>
       </Fragment>
     );
