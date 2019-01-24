@@ -52,7 +52,7 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <h1 className='title'>Harry Potter characters</h1>
+        <h1 className='app-title'>Harry Potter characters</h1>
         <Switch>
           <Route exact path="/" render={()=>(
             <Fragment>

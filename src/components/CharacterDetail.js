@@ -15,31 +15,32 @@ class CharacterDetail extends Component {
 
           return (
             <Fragment>
-                    <div className='character'>
-                        <img src={image} alt={name} className='character-image'></img>
-                        <h2 className='character-name'>{name}</h2>
-                        <p className='character-house'>{`Casa: ${house}`}</p>
-                        <p className='character-birth'>{`Nacimiento: ${yearOfBirth}`}</p>
-                        <p className='character-patronus'>{`Patronus: ${patronus}`}</p>
-                        <p className='character-state'>{`Estado: ${(alive) ? "vivo" : "muerto"}`}</p>
+                    <div className='detail-card'>
+                        <img src={image} alt={name} className='detail-card__image'></img>
+                        <div className='detail-card__info'>
+                            <h2 className='detail-card__name'>{name}</h2>
+                            <p className='detail-card__house'>{`Casa: ${house}`}</p>
+                            <p className='detail-card__birth'>{`Nacimiento: ${yearOfBirth}`}</p>
+                            <p className='detail-card__patronus'>{`Patronus: ${patronus}`}</p>
+                            <p className='detail-card__state'>{`Estado: ${(alive) ? "vivo" : "muerto"}`}</p>
+                        </div>
                     </div>
-                <Link to="/">Volver</Link>
+                <Link to="/" className='go-back'>Volver</Link>
             </Fragment>
           )
       } else {
         return (
             <Fragment>
-              <p>No hay datos</p>
-              <Link to="/">Volver</Link>
+              <p className='message'>No hay datos</p>
+              <Link to="/" className='go-back'>Volver</Link>
             </Fragment>
         );
       }
   };
 }
 
-CharacterDetail.PropTypes = {
+CharacterDetail.propTypes = {
     character: PropTypes.arrayOf(PropTypes.object).isRequired,
-    characterId: PropTypes.number.isRequired
 }
 
 export default CharacterDetail;
