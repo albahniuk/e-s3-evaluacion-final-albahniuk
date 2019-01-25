@@ -21,7 +21,6 @@ class App extends Component {
   }
 
   componentDidMount(){
-    // this.getCharacters();
     this.getSavedCharacters();
   }
 

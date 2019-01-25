@@ -5,7 +5,7 @@ class Filter extends Component {
   render() {
     return (
       <div className='app-filter'>
-        <input type='text' placeholder='Hermione Granger' onKeyUp={this.props.getInput}/>
+        <input className='app-input' type='text' placeholder='Hermione Granger' onKeyUp={this.props.getInput}/>
       </div>
     );
   }

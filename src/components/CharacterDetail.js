@@ -10,7 +10,7 @@ class CharacterDetail extends Component {
             return 'hufflepuff'
         } else if (school === 'Ravenclaw') {
             return 'ravenclaw'
-        } else {
+        } else if (school === 'Slytherin') {
             return 'slytherin'
         }
     }
@@ -19,7 +19,7 @@ class CharacterDetail extends Component {
         if(state){
             return "vivo"
         } else {
-            return (<i class="fas fa-skull-crossbones"></i>);
+            return (<i className="fas fa-skull-crossbones"></i>);
         }
     }
 
