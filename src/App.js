@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import './App.scss';
+import './stylesheets/App.scss';
 import CharacterList from './components/CharacterList';
 import CharacterDetail from './components/CharacterDetail';
 import {fetchCharacters} from './services/CharactersService';
@@ -69,16 +69,20 @@ class App extends Component {
   render() {
     return (
       <Fragment>
+        <header className='app-header'>
         <h1 className='app-title'>Personajes de Harry Potter</h1>
-        <Switch>
-          <Route exact path="/" render={()=>(
-            <Fragment>
-              <Filter getInput={this.getInput}/>
-              <CharacterList filterCharacter={this.filterCharacter()}/>
-            </Fragment>
-          )} />
-          <Route path="/character/:id" render={props => <CharacterDetail match={props.match} characters={this.state.characters}/>} />
-        </Switch>
+        </header>
+        <main className='app-main'>
+          <Switch>
+            <Route exact path="/" render={()=>(
+              <Fragment>
+                <Filter getInput={this.getInput}/>
+                <CharacterList filterCharacter={this.filterCharacter()}/>
+              </Fragment>
+            )} />
+            <Route path="/character/:id" render={props => <CharacterDetail match={props.match} characters={this.state.characters}/>} />
+          </Switch>
+        </main>
       </Fragment>
     );
   }

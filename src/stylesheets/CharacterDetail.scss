@@ -1,61 +1,3 @@
-// > App
-.app-title {
-    text-align: center;
-    font-size: 22px;
-    margin-bottom: 20px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    @media all and (min-width: 768px) {
-        font-size: 50px;
-    } 
-}
-
-.app-filter {
-    display: flex;
-    justify-content: center;
-}
-
-// > List
-.characters__list {
-    display: flex;
-    max-width: 100vw;
-    flex-wrap: wrap;
-    margin-top: 50px;
-    padding: 5px;
-    justify-content: center;
-}
-
-.characters__list-item {
-    list-style-type: none;
-    margin: 10px;
-    padding: 0;
-    border: 1px solid gray;
-    border-radius: 5px;
-    background-color: orangered;
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.35);
-}
-
-.characters__list-item-link {
-    text-decoration: none;
-    color: white;
-}
-
-// > Character
-.character-image {
-    width: 163px;
-    height: 227px;
-}
-
-.character-name {
-    font-size: 16px;
-    text-align: center;
-}
-
-.character-house {
-    text-align: center;
-    font-size: 12px;
-}
-
-// > Detail Card
 .detail-card {
     width: 180px;
     height: 360px;
@@ -140,7 +82,7 @@
 .gryffindor{
     height: 50px;
     width: 50px;
-    background-image: url('./images/Gryffindor.png');
+    background-image: url('./../images/Gryffindor.png');
     transform: translate(130px, -360px);
     background-position: center; 
     background-repeat: no-repeat;
@@ -156,7 +98,7 @@
 .hufflepuff {
     height: 50px;
     width: 50px;
-    background-image: url('./images/Hufflepuff.png');
+    background-image: url('./../images/Hufflepuff.png');
     transform: translate(130px, -360px);
     background-position: center; 
     background-repeat: no-repeat;
@@ -173,7 +115,7 @@
 .ravenclaw {
     height: 50px;
     width: 50px;
-    background-image: url('./images/Ravenclaw.png');
+    background-image: url('./../images/Ravenclaw.png');
     background-position: center; 
     background-repeat: no-repeat;
     background-size: contain;
@@ -190,7 +132,7 @@
 .slytherin {
     height: 50px;
     width: 50px;
-    background-image: url('./images/Slytherin.png');
+    background-image: url('./../images/Slytherin.png');
     background-position: center; 
     background-repeat: no-repeat;
     background-size: contain;

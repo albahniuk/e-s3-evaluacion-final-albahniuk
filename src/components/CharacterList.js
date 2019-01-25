@@ -6,19 +6,24 @@ import PropTypes from 'prop-types';
 class CharacterList extends Component {
   render() {
     const {filterCharacter} = this.props;
-    return (
-      <ul className='characters__list'>
-        {filterCharacter.map(item => {
-          return (
-            <li className='characters__list-item' key={item.id}>
-              <Link to={`/character/${item.id}`} className='characters__list-item-link'>
-                <CharacterCard name={item.name} house={item.house} image={item.image} />
-              </Link>
-            </li>
-          )
-        })}
-      </ul>
-    );
+    
+    if (filterCharacter.length === 0) {
+      return (<p className='message-results'>No hay resultados</p>)
+    } else {
+      return (
+        <ul className='characters__list'>
+          {filterCharacter.map(item => {
+            return (
+              <li className='characters__list-item' key={item.id}>
+                <Link to={`/character/${item.id}`} className='characters__list-item-link'>
+                  <CharacterCard name={item.name} house={item.house} image={item.image} />
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      );
+    }
   }
 }
 

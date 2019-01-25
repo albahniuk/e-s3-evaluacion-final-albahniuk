@@ -1,0 +1,18 @@
+@import 'CharacterList';
+@import 'CharacterCard';
+@import 'CharacterDetail';
+
+.app-title {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    @media all and (min-width: 768px) {
+        font-size: 50px;
+    } 
+}
+
+.app-filter {
+    display: flex;
+    justify-content: center;
+}
