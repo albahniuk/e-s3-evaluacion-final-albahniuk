@@ -5,21 +5,25 @@
     margin-top: 50px;
     padding: 5px;
     justify-content: center;
+    @media all and (min-width: 1280px) {
+        padding-left: 150px;
+        padding-right: 150px;
+    }   
 }
 
 .characters__list-item {
     list-style-type: none;
     margin: 10px;
     padding: 0;
-    border: 1px solid gray;
+    border: 1px solid #C1B400;
     border-radius: 5px;
-    background-color: #880a0a;
+    background-color: #6E1E45;
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.35);
 }
 
 .characters__list-item-link {
     text-decoration: none;
-    color: white;
+    color: #C1B400;
 }
 
 .message-results {
