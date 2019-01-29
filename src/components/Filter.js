@@ -6,6 +6,11 @@ class Filter extends Component {
     return (
       <div className='app-filter'>
         <input className='app-input' type='text' placeholder='Hermione Granger' onKeyUp={this.props.getInput}/>
+        <input className='input-house' type='text' placeholder='Gryffindor' onKeyUp={this.props.handleHouses} />
+        <select onChange={this.props.handleSelect}>
+          <option value='alive' >Vivo</option>
+          <option value='dead'>Muerto</option>
+        </select>
       </div>
     );
   }

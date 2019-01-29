@@ -12,12 +12,16 @@ class App extends Component {
     super(props);
     this.state = {
       characters: [],
-      filteredCharacter: ''
+      filteredCharacter: '',
+      filteredHouses: '',
+      selectedState: ''
     }
 
     this.getCharacters = this.getCharacters.bind(this);
     this.getInput = this.getInput.bind(this);
     this.filterCharacter = this.filterCharacter.bind(this);
+    this.handleHouses = this.handleHouses.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentDidMount(){
@@ -59,10 +63,47 @@ class App extends Component {
     })
   }
 
-  filterCharacter() {
-    const {characters, filteredCharacter} = this.state;
+  handleSelect(e){
+    const state = e.currentTarget.value;
+    this.setState({
+      selectedState: state
+    })
+  }
 
-    return characters.filter(item => item.name.toLowerCase().includes(filteredCharacter.toLowerCase()));
+  filterCharacter(filter) {
+    const {characters, filteredCharacter} = this.state;
+    const filter = characters.filter(item => item.name.toLowerCase().includes(filteredCharacter.toLowerCase()))
+  }
+
+  filterHouses(){
+    const {filteredHouses, characters} = this.state;
+    if(filteredHouses === "sin casa") {
+      return characters
+      .filter((item) => item.house === '')
+    } else {
+      return characters
+      .filter(item => item.house.toLowerCase().includes(filteredHouses.toLowerCase()))
+    }
+  }
+
+  filterStatus() {
+    const {selectedState, characters} = this.state;
+    if(selectedState === 'alive') {
+      return characters
+      .filter((item) => item.alive === true)
+    } else if (selectedState === 'dead') {
+      return characters
+      .filter((item) => item.alive === false)
+    } else {
+      return characters;
+    }
+  }
+
+  handleHouses(e){
+    const house = e.currentTarget.value;
+    this.setState({
+      filteredHouses: house
+    })
   }
 
   render() {
@@ -75,8 +116,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" render={()=>(
               <Fragment>
-                <Filter getInput={this.getInput}/>
-                <CharacterList filterCharacter={this.filterCharacter()}/>
+                <Filter getInput={this.getInput} handleHouses={this.handleHouses} handleSelect={this.handleSelect}/>
+                <CharacterList filterCharacter={this.filterCharacter()} filterStatus={this.filterStatus()} filterHouses={this.filterHouses()}/>
               </Fragment>
             )} />
             <Route path="/character/:id" render={props => <CharacterDetail match={props.match} characters={this.state.characters}/>} />
