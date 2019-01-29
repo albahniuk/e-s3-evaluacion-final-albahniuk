@@ -6,6 +6,7 @@ class Filter extends Component {
     return (
       <div className='app-filter'>
         <input className='app-input' type='text' placeholder='Hermione Granger' onKeyUp={this.props.getInput}/>
+        <input className='input' type='text' placeholder='escribe el ancestro' onKeyUp={this.props.handlefilter}/>
       </div>
     );
   }
