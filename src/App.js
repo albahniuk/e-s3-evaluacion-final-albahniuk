@@ -12,12 +12,15 @@ class App extends Component {
     super(props);
     this.state = {
       characters: [],
-      filteredCharacter: ''
+      filteredCharacter: '',
+      filteredHouse: ''
     }
 
     this.getCharacters = this.getCharacters.bind(this);
     this.getInput = this.getInput.bind(this);
     this.filterCharacter = this.filterCharacter.bind(this);
+    this.handleHouse = this.handleHouse.bind(this);
+    this.filterHouse = this.filterHouse.bind(this);
   }
 
   componentDidMount(){
@@ -59,9 +62,35 @@ class App extends Component {
     })
   }
 
+  handleHouse(e) {
+    const house = e.currentTarget.value;
+    this.setState({
+      filteredHouse: house
+    })
+  }
+
+  filterHouse(){
+    const {characters, filteredHouse} = this.state;
+    if(filteredHouse === 'no') {
+      return characters.filter(item => item.house === '')
+    } else {
+      return characters.filter(item => item.house.toLowerCase().includes(filteredHouse.toLowerCase()));
+    }
+  }
+
+  filterState(){
+    const {characters, filteredHouse} = this.state;
+    if(filteredHouse === 'alive') {
+      return characters.filter(item => item.alive === true)
+    } else if (filteredHouse === 'dead') {
+      return characters.filter(item => item.alive === false)
+    } else {
+      return characters.filter(item => item.house.toLowerCase().includes(filteredHouse.toLowerCase()));
+    }
+  }
+
   filterCharacter() {
     const {characters, filteredCharacter} = this.state;
-
     return characters.filter(item => item.name.toLowerCase().includes(filteredCharacter.toLowerCase()));
   }
 
@@ -75,8 +104,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" render={()=>(
               <Fragment>
-                <Filter getInput={this.getInput}/>
-                <CharacterList filterCharacter={this.filterCharacter()}/>
+                <Filter getInput={this.getInput} handleHouse={this.handleHouse}/>
+                <CharacterList filterCharacter={this.filterState()}/>
               </Fragment>
             )} />
             <Route path="/character/:id" render={props => <CharacterDetail match={props.match} characters={this.state.characters}/>} />
