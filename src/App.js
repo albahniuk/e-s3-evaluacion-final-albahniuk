@@ -12,12 +12,14 @@ class App extends Component {
     super(props);
     this.state = {
       characters: [],
-      filteredCharacter: ''
+      filteredCharacter: '',
+      filteredHouse: ''
     }
 
     this.getCharacters = this.getCharacters.bind(this);
     this.getInput = this.getInput.bind(this);
     this.filterCharacter = this.filterCharacter.bind(this);
+    this.handleHouse = this.handleHouse.bind(this);
   }
 
   componentDidMount(){
@@ -59,10 +61,21 @@ class App extends Component {
     })
   }
 
+  handleHouse(e){
+    const query = e.currentTarget.value;
+    this.setState({
+      filteredHouse: query
+    })
+  }
+
   filterCharacter() {
     const {characters, filteredCharacter} = this.state;
-
     return characters.filter(item => item.name.toLowerCase().includes(filteredCharacter.toLowerCase()));
+  }
+
+  filterHouse() {
+    const {characters, filteredHouse} = this.state;
+    return characters.filter(item => item.house.toLowerCase().includes(filteredHouse.toLowerCase()));
   }
 
   render() {
@@ -75,8 +88,8 @@ class App extends Component {
           <Switch>
             <Route exact path="/" render={()=>(
               <Fragment>
-                <Filter getInput={this.getInput}/>
-                <CharacterList filterCharacter={this.filterCharacter()}/>
+                <Filter getInput={this.getInput} handleHouse={this.handleHouse}/>
+                <CharacterList filterCharacter={this.filterCharacter()} filterHouse={this.filterHouse()}/>
               </Fragment>
             )} />
             <Route path="/character/:id" render={props => <CharacterDetail match={props.match} characters={this.state.characters}/>} />

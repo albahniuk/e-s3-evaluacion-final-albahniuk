@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 
 class CharacterList extends Component {
   render() {
-    const {filterCharacter} = this.props;
+    const {filterCharacter, filterHouse} = this.props;
     
-    if (filterCharacter.length === 0) {
+    if (filterHouse.length === 0) {
       return (<p className='message-results'>No hay resultados</p>)
     } else {
       return (
@@ -24,6 +24,7 @@ class CharacterList extends Component {
         </ul>
       );
     }
+
   }
 }
 
