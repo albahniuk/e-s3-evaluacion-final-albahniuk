@@ -1,6 +1,8 @@
 .app-input {
     border: 0px solid;
-
+    border-radius: 20px;
+    width: 250px;
+    height: 30px;
     @media all and (min-width: 768px) {
         width: 300px;
         height: 30px;

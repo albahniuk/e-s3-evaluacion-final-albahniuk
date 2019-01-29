@@ -53,7 +53,7 @@ class CharacterDetail extends Component {
             return (
                 <Fragment>
                     <p className='message'>No hay datos</p>
-                    <Link to="/" className='go-back'><i class="fas fa-caret-left"></i><p>Volver</p></Link>
+                    <Link to="/" className='go-back'><p>Volver</p></Link>
                 </Fragment>
             );
         }
