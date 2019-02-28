@@ -1,4 +1,4 @@
-## Evaluación final del Sprint3 - Página web con personajes de Harry Potter.
+## Buscador de personajes de Harry Potter.
 
 En este ejercicio desarrollamos con React una página web con un listado de personajes de Harry Potter,
 que podemos filtrar por el nombre del personaje. 
